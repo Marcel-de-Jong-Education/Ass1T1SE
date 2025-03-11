@@ -1,17 +1,17 @@
-# https://dictionaryapi.dev/ #
-import os
-os.system('cls')
-import requests as r
+# https://dictionaryapi.dev/ # API Utilised
+import os # To run terminal commands
+os.system('cls') # Clear the terminal before the programme runs
+import requests as r # To retrieve API data
 
-while True:
-  wordChoice = input("Enter word:\n")
-  try: contents = r.get("https://api.dictionaryapi.dev/api/v2/entries/en/" + wordChoice.lower()).json()[0]
-  except: print("Error 404 Word not found!"); continue
+while True: # User can query as many words as they like without needing to re-start the programme each time
+  wordChoice = input("Enter word:\n") #
+  try: contents = r.get("https://api.dictionaryapi.dev/api/v2/entries/en/" + wordChoice.lower()).json()[0] # Retrieve the raw API data
+  except: print("Error 404 Word not found!"); continue # Try again if malformed input is received.
 
-  options = ""
-  for a in contents: options += a + ", "
+  options = "" # 
+  for a in contents: options += a + ", " # Aquire all dictionary keys
 
-  group = input("Options:\n" + options[6:len(options)-2] + '\n')
+  group = input("Options:\n" + options[6:len(options)-2] + '\n') # The dictionary key the user wants
 
   things = []
   appTo = False
