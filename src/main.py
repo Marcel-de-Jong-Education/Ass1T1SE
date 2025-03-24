@@ -3,8 +3,59 @@ import os; # To run terminal commands
 #os.system('cls'); # Clear the terminal before the programme runs
 import requests as r; # To retrieve API data
 
+print(
+    r'''
+         ,--"""",--.__,---[],-------._         
+       ,"   __,'            \         \--""""""==;-
+     ," _,-"  "/---.___     \       ___\   ,-'',"
+    /,-'      / ;. ,.--'-.__\  _,-"" ,| `,'   /
+   /``""""-._/,-|:\       []\,' ```-/:;-. `. /
+             `  ;:::      ||       /:,;  `-.\
+                =.,'__,---||-.____',.=
+                =(:\_     ||__    ):)=
+               ,"::::`----||::`--':::"._
+             ,':::::::::::||::::::::::::'.
+    .__     ;:::.-.:::::__||___:::::.-.:::\     __,
+       """-;:::( O )::::>_|| _<::::( O )::::-"""
+   =======;:::::`-`:::::::||':::::::`-`:::::\=======
+    ,--"";:::_____________||______________::::""----.          , ,
+         ; ::`._(    |    |||     |   )_,'::::\_,,,,,,,,,,____/,'_,
+       ,;    :::`--._|____[]|_____|_.-'::::::::::::::::::::::::);_
+      ;/ /      :::::::::,||,:::::::::::::::::::::::::::::::::::/
+     /; ``''''----------/,'/,__,,,,,____:::::::::::::::::::::,"
+     ;/                :);/|_;| ,--.. . ```-.:::::::::::::_,"
+    /;                :::):__,'//""\\. ,--.. \:::,:::::_,"
+   ;/              :::::/ . . . . . . //""\\. \::":__,"
+   ;/          :::::::,' . . . . . . . . . . .:`::\
+   ';      :::::::__,'. ,--.. . .,--. . . . . .:`::`
+   ';   __,..--'''-. . //""\\. .//""\\ . ,--.. :`:::`
+   ;    /  \\ .//""\\ . . . . . . . . . //""\\. :`::`
+   ;   /       . . . . . . . . . . . . . . . . .:`::`
+   ;   (          . . . . . . . . . . . . . . . ;:::`
+   ,:  ;,            . . . . . . . . . . . . . ;':::`
+   ,:  ;,             . . . . . . . . . . . . .;`:::
+   ,:   ;,             . . . . . . . . . . . . ;`::;`
+    ,:  ;             . . . . . . . . . . . . ;':::;`
+     :   ;             . . . . . . . . . . . ,':::;
+      :   '.          . . . . . . . .. . . .,':::;`
+       :    `.       . . . . . . . . . . . ;::::;`
+        '.    `-.   . . . . . . . . . . ,-'::::;
+          `:_    ``--..___________..--'':::::;'`
+             `._::,.:,.:,:_ctr_:,:,.::,.:_;'`
+________________`"\/"\/\/'""""`\/"\/""\/"____________________________
+'''
+)
+
 while True: # User can query as many words as they like without needing to re-start the programme each time
+    print(
+        "Query History:\n✨————————————————✧—♥—✧————————————————✨" # Powershell is utf-8 encoded, this is totally fine!
+        + open(os.getcwd()[:-3] + "\\user_history\\guest_history.txt",'r').read(),
+        end="\n✨————————————————✧♥✧————————————————✨\n"
+        )
+
     wordChoice = input("Enter word:\n"); #
+    open(os.getcwd()[:-3] + "\\user_history\\guest_history.txt",'w').write('\n'+wordChoice) # Will save requests even if they're invalid. and thats okay!! <3
+         
     try: contents = r.get("https://api.dictionaryapi.dev/api/v2/entries/en/" + wordChoice.lower()).json()[0]; # Retrieve the raw API data
     except: print("Error 404 Word not found!"); continue # Try again if malformed input is received.
 
@@ -28,6 +79,8 @@ while True: # User can query as many words as they like without needing to re-st
                 print(a + ':', rawText[a]); 
     else:
         print(rawText)
+
+    
                 
 
 
